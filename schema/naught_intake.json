@@ -3,6 +3,36 @@
   "$id": "https://github.com/Eaprime1/naught/schema/naught_intake.json",
   "title": "naught intake custody record",
   "description": "Minimum custody shape for content held in naught space. Extend this schema rather than replacing it.",
+  "$defs": {
+    "jsonValue": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
   "type": "object",
   "required": [
     "identity",
@@ -186,7 +216,8 @@
             "type": "string"
           },
           "data": {
-            "description": "Extension payload. May be any JSON value."
+            "description": "Extension payload. May be any JSON value.",
+            "$ref": "#/$defs/jsonValue"
           }
         },
         "additionalProperties": false
