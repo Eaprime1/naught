@@ -75,7 +75,7 @@ Use and extend `schema/naught_intake.json`:
   },
   "closing_status": "HOLDING",
   "extensions": {
-    "repo.extension-name": {
+    "eaprime1/naught.extension-name": {
       "description": "",
       "data": {}
     }
