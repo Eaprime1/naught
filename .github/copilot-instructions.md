@@ -14,10 +14,7 @@ something to naught is navigational, not failure.
 ## Position in the custody chain
 
 ```text
-Unknowable
-  → Maw
-  → known_naught
-  → nullus
+nullus
   → unknown
   → [ naught operates here ]
   → naught_known
@@ -26,9 +23,9 @@ Unknowable
   → Zero space repo
 ```
 
-Alias labels such as `empty_vector`, `anti_vector`, and `vector` are descriptive
-language in the wider custody chain, but the schema in this repo uses the
-canonical lowercase state identifiers shown above.
+Alias labels such as `anti_vector` and `vector` may appear in wider custody
+discussion, but the schema in this repo uses the canonical lowercase state
+identifiers shown above.
 
 This repo is currently responsible for the **`unknown` → `naught_known`**
 transition. Possible future expansion to other aspects of naught space remains
