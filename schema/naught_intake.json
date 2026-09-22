@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Eaprime1/naught/schema/naught_intake.json",
+  "title": "naught intake custody record",
+  "description": "Minimum custody shape for content held in naught space. Extend this schema rather than replacing it.",
+  "type": "object",
+  "required": [
+    "identity",
+    "naught_state",
+    "custody",
+    "hold_note",
+    "closing_status"
+  ],
+  "properties": {
+    "identity": {
+      "type": "object",
+      "required": [
+        "name",
+        "one_line_signal",
+        "source",
+        "prima_clock"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "one_line_signal": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "prima_clock": {
+          "type": "string",
+          "pattern": "^[0-9]{12}$"
+        }
+      },
+      "additionalProperties": true
+    },
+    "naught_state": {
+      "type": "object",
+      "required": [
+        "current",
+        "prior",
+        "entered_at"
+      ],
+      "properties": {
+        "current": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "naught_known"
+          ]
+        },
+        "prior": {
+          "type": "string"
+        },
+        "entered_at": {
+          "type": "string",
+          "pattern": "^[0-9]{12}$"
+        }
+      },
+      "additionalProperties": true
+    },
+    "custody": {
+      "type": "object",
+      "required": [
+        "suit",
+        "plank_status",
+        "transit_type",
+        "authorized_by"
+      ],
+      "properties": {
+        "suit": {
+          "type": "string"
+        },
+        "plank_status": {
+          "type": "string"
+        },
+        "transit_type": {
+          "type": "string",
+          "const": "gas_transfer"
+        },
+        "authorized_by": {
+          "type": "string",
+          "const": "Custos"
+        }
+      },
+      "additionalProperties": true
+    },
+    "hold_note": {
+      "type": "object",
+      "required": [
+        "do_not_develop",
+        "do_not_connect_yet",
+        "wait_for"
+      ],
+      "properties": {
+        "do_not_develop": {
+          "type": "string"
+        },
+        "do_not_connect_yet": {
+          "type": "string"
+        },
+        "wait_for": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "closing_status": {
+      "type": "string",
+      "const": "HOLDING"
+    }
+  },
+  "additionalProperties": true
+}

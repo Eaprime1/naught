@@ -1,19 +1,11 @@
-# Incoming
+# Incoming Register
 
-Fragments arrive here. Unnamed. Unjudged.
+Use this file as a lightweight register only when an incoming custody record
+needs a temporary landing note before its own file is created in `intake/`.
 
-Each entry follows this pattern:
+Preferred shape for actual items:
 
-```
----
-received: YYYY-MM-DD HH:MM
-fragment: [the raw thing that arrived]
-the what:  [leave blank — THEE will ask]
-yod mark:  [leave blank — YOD will mark]
-ember:     warm | cooling | named
----
-```
-
-<!-- THEE opens. YOD marks. EMBER warms. -->
-
-<!-- append entries below this line -->
+- one file per item
+- traceable back to its source
+- structured to the minimum schema in `schema/naught_intake.json`
+- ready to move by `gas_transfer`, not in-place mutation
