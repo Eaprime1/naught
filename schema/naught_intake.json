@@ -28,7 +28,9 @@
           "type": "string"
         },
         "source": {
-          "type": "string"
+          "type": "string",
+          "description": "URI-like origin reference, such as a nullus record handle or external source URL.",
+          "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:.+$"
         },
         "prima_clock": {
           "type": "string",
@@ -53,7 +55,21 @@
           ]
         },
         "prior": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "",
+            "unknowable",
+            "maw",
+            "known_naught",
+            "empty_vector",
+            "nullus",
+            "unknown",
+            "anti_vector",
+            "naught_known",
+            "vector",
+            "known",
+            "unknown_zero"
+          ]
         },
         "entered_at": {
           "type": "string",
