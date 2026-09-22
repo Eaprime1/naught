@@ -16,15 +16,19 @@ something to naught is navigational, not failure.
 ```text
 Unknowable
   → Maw
-  → known_naught (alias: empty_vector)
-  → Nullus
-  → unknown (alias: anti_vector)
+  → known_naught
+  → nullus
+  → unknown
   → [ naught operates here ]
-  → naught_known (alias: vector)
-  → Known
+  → naught_known
+  → known
   → unknown_zero
   → Zero space repo
 ```
+
+Alias labels such as `empty_vector`, `anti_vector`, and `vector` are descriptive
+language in the wider custody chain, but the schema in this repo uses the
+canonical lowercase state identifiers shown above.
 
 This repo is responsible for the **`unknown` → `naught_known`** transition and for
 holding whatever other aspects of naught space are later assigned to it.
