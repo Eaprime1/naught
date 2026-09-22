@@ -34,6 +34,7 @@
         },
         "prima_clock": {
           "type": "string",
+          "description": "Prima clock timestamp in YYYYMMDDHHMM format.",
           "pattern": "^[0-9]{12}$"
         }
       },
@@ -63,6 +64,7 @@
           "description": "Canonical prior-state identifier from the custody chain. Use a canonical state name rather than an alias label, or null when no prior state is recorded.",
           "enum": [
             null,
+            "naught",
             "unknown",
             "naught_known",
             "known",
@@ -71,6 +73,7 @@
         },
         "entered_at": {
           "type": "string",
+          "description": "Entry timestamp for the current naught-space state in YYYYMMDDHHMM format.",
           "pattern": "^[0-9]{12}$"
         }
       },
