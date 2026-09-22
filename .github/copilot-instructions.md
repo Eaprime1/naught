@@ -86,6 +86,11 @@ Use and extend `schema/naught_intake.json`:
 Place repo-specific additions in an optional top-level `extensions` object so
 the minimum custody contract stays stable for consumers.
 
+A record may be this bare form or a full Custos `GERM_INTAKE` carrier that wraps
+it in `germ_intake_form`. Carrier fields naught does not define (`carrier_type`,
+`card_rank`, `destination_repo`, `polar_state`, sibling sections) pass through
+unchanged; only naught's own fields are held strict.
+
 When `current` is `naught_known`, `prior` must be `unknown`. When `current` is
 `unknown`, `prior` may be `null` for a fresh handoff or `naught_known` for a
 returned item re-entering naught space. These rules are enforced by conditional
