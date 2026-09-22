@@ -14,7 +14,7 @@ something to naught is navigational, not failure.
 ## Position in the custody chain
 
 ```text
-nullus
+Nullus handoff
   → unknown
   → [ naught operates here ]
   → naught_known
