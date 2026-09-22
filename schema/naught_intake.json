@@ -34,8 +34,8 @@
         },
         "prima_clock": {
           "type": "string",
-          "description": "Prima clock timestamp in YYYYMMDDHHMM format.",
-          "pattern": "^[0-9]{12}$"
+          "description": "Prima clock timestamp in YYYYMMDDHHMM numeric format.",
+          "pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])([01][0-9]|2[0-3])[0-5][0-9]$"
         }
       },
       "additionalProperties": false
@@ -69,10 +69,50 @@
         },
         "entered_at": {
           "type": "string",
-          "description": "Entry timestamp for the current naught-space state in YYYYMMDDHHMM format.",
-          "pattern": "^[0-9]{12}$"
+          "description": "Entry timestamp for the current naught-space state in YYYYMMDDHHMM numeric format.",
+          "pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])([01][0-9]|2[0-3])[0-5][0-9]$"
         }
       },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "current": {
+                "const": "unknown"
+              }
+            },
+            "required": [
+              "current"
+            ]
+          },
+          "then": {
+            "properties": {
+              "prior": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "current": {
+                "const": "naught_known"
+              }
+            },
+            "required": [
+              "current"
+            ]
+          },
+          "then": {
+            "properties": {
+              "prior": {
+                "const": "unknown"
+              }
+            }
+          }
+        }
+      ],
       "additionalProperties": false
     },
     "custody": {
