@@ -88,7 +88,8 @@ the minimum custody contract stays stable for consumers.
 
 When `current` is `naught_known`, `prior` must be `unknown`. When `current` is
 `unknown`, `prior` may be `null` for a fresh handoff or `naught_known` for a
-returned item re-entering naught space.
+returned item re-entering naught space. These rules are enforced by conditional
+validation in `schema/naught_intake.json`, not just by the example above.
 
 ## Explicitly do not resolve
 
