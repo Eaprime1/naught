@@ -60,6 +60,7 @@
           "description": "Canonical prior-state identifier from the custody chain. Use the canonical state name rather than an alias label.",
           "enum": [
             "",
+            "known_naught",
             "nullus",
             "unknown",
             "known",
