@@ -35,7 +35,7 @@
           "pattern": "^[0-9]{12}$"
         }
       },
-      "additionalProperties": true
+      "additionalProperties": false
     },
     "naught_state": {
       "type": "object",
@@ -60,7 +60,7 @@
           "pattern": "^[0-9]{12}$"
         }
       },
-      "additionalProperties": true
+      "additionalProperties": false
     },
     "custody": {
       "type": "object",
@@ -86,7 +86,7 @@
           "const": "Custos"
         }
       },
-      "additionalProperties": true
+      "additionalProperties": false
     },
     "hold_note": {
       "type": "object",
@@ -106,12 +106,17 @@
           "type": "string"
         }
       },
-      "additionalProperties": true
+      "additionalProperties": false
     },
     "closing_status": {
       "type": "string",
       "const": "HOLDING"
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional repo-specific additions that extend the minimum custody shape without changing it.",
+      "additionalProperties": true
     }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }

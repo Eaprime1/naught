@@ -75,6 +75,9 @@ Use and extend `schema/naught_intake.json`:
 }
 ```
 
+Place repo-specific additions in an optional top-level `extensions` object so
+the minimum custody contract stays stable for consumers.
+
 ## Explicitly do not resolve
 
 - Whether this repo stays narrow or absorbs additional aspects of naught space
