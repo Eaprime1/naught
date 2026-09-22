@@ -62,7 +62,7 @@ Use and extend `schema/naught_intake.json`:
   },
   "naught_state": {
     "current": "unknown | naught_known",
-    "prior": "",
+    "prior": null,
     "entered_at": "YYYYMMDDHHMM"
   },
   "custody": {
