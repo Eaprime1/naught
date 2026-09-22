@@ -16,11 +16,11 @@ something to naught is navigational, not failure.
 ```text
 Unknowable
   → Maw
-  → known_naught / empty_vector
+  → known_naught (alias: empty_vector)
   → Nullus
-  → unknown / anti_vector
+  → unknown (alias: anti_vector)
   → [ naught operates here ]
-  → naught_known / vector
+  → naught_known (alias: vector)
   → Known
   → unknown_zero
   → Zero space repo
@@ -72,7 +72,12 @@ Use and extend `schema/naught_intake.json`:
     "wait_for": ""
   },
   "closing_status": "HOLDING",
-  "extensions": {}
+  "extensions": {
+    "repo_name.extension_name": {
+      "description": "",
+      "data": {}
+    }
+  }
 }
 ```
 

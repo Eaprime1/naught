@@ -49,6 +49,7 @@
       "properties": {
         "current": {
           "type": "string",
+          "description": "Canonical naught-space state identifier for the current record.",
           "enum": [
             "unknown",
             "naught_known"
@@ -56,6 +57,7 @@
         },
         "prior": {
           "type": "string",
+          "description": "Canonical prior-state identifier from the custody chain. Use the canonical state name rather than an alias label.",
           "enum": [
             "",
             "unknowable",
@@ -130,8 +132,27 @@
     },
     "extensions": {
       "type": "object",
-      "description": "Optional repo-specific additions that extend the minimum custody shape without changing it.",
-      "additionalProperties": true
+      "description": "Optional repo-specific additions that extend the minimum custody shape without changing it. Keys must be namespace-like identifiers and values use a consistent envelope.",
+      "propertyNames": {
+        "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "description",
+          "data"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": false
+      }
     }
   },
   "additionalProperties": false
