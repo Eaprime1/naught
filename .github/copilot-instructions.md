@@ -75,7 +75,7 @@ Use and extend `schema/naught_intake.json`:
   },
   "closing_status": "HOLDING",
   "extensions": {
-    "repo_name.extension_name": {
+    "repo-name.extension-name": {
       "description": "",
       "data": {}
     }
