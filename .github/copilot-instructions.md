@@ -30,8 +30,9 @@ Alias labels such as `empty_vector`, `anti_vector`, and `vector` are descriptive
 language in the wider custody chain, but the schema in this repo uses the
 canonical lowercase state identifiers shown above.
 
-This repo is responsible for the **`unknown` → `naught_known`** transition and for
-holding whatever other aspects of naught space are later assigned to it.
+This repo is currently responsible for the **`unknown` → `naught_known`**
+transition. Possible future expansion to other aspects of naught space remains
+an open question; do not infer it here.
 
 ## Hard rules
 
