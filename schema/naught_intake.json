@@ -61,10 +61,11 @@
             "string",
             "null"
           ],
-          "description": "Canonical prior-state identifier for records in this repo's current local custody slice. Use `unknown` when the record is the result of the local transition, or null when no prior in-repo state is recorded.",
+          "description": "Canonical prior-state identifier for records in this repo's current local custody slice. Use null for a fresh `unknown` record, `naught_known` for a returned item re-entering as `unknown`, or `unknown` for a record that has completed the local transition.",
           "enum": [
             null,
-            "unknown"
+            "unknown",
+            "naught_known"
           ]
         },
         "entered_at": {
@@ -88,7 +89,10 @@
           "then": {
             "properties": {
               "prior": {
-                "type": "null"
+                "enum": [
+                  null,
+                  "naught_known"
+                ]
               }
             }
           }

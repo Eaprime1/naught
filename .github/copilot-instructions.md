@@ -58,7 +58,7 @@ Use and extend `schema/naught_intake.json`:
     "prima_clock": "YYYYMMDDHHMM"
   },
   "naught_state": {
-    "current": "unknown | naught_known",
+    "current": "unknown",
     "prior": null,
     "entered_at": "YYYYMMDDHHMM"
   },
@@ -85,6 +85,10 @@ Use and extend `schema/naught_intake.json`:
 
 Place repo-specific additions in an optional top-level `extensions` object so
 the minimum custody contract stays stable for consumers.
+
+When `current` is `naught_known`, `prior` must be `unknown`. When `current` is
+`unknown`, `prior` may be `null` for a fresh handoff or `naught_known` for a
+returned item re-entering naught space.
 
 ## Explicitly do not resolve
 
