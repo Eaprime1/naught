@@ -1,0 +1,34 @@
+# Prima — Validate JSON/YAML
+#
+# Blocking check: every .json and .yaml/.yml file must parse cleanly.
+# Unlike scan-lexeme.yml (advisory), this fails the PR — invalid JSON/YAML
+# is unambiguously broken, not a matter of taste. Ported from custos,
+# which built this after a merge collision on identity.json/ecc-tools.json
+# produced silently invalid JSON with no conflict markers, and nothing in
+# CI caught it. See tools/validate_json_yaml.sh.
+name: Prima — Validate JSON/YAML
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: python3 -m pip install --quiet pyyaml
+
+      - name: Validate JSON/YAML files parse
+        run: bash tools/validate_json_yaml.sh .
+
+# ∰🛠️⭐📐-prima_validate_json_yaml_v1

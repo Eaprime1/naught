@@ -1,0 +1,8 @@
+# CODEOWNERS — prima template
+#
+# Default owner for this template repo. If you fork prima into a new
+# concept repo, update this to your own username/team before relying on
+# it — this file does not travel with any special meaning, it's just a
+# sane default so the template itself isn't ownerless.
+
+* @eaprime1

@@ -1,0 +1,45 @@
+name: Prima — Sovran Voice
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+jobs:
+  prima-speaks:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Prima witnesses the form
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const author = pr.user.login;
+            const body = [
+              '## ∰ Prima — The First Witness',
+              '',
+              '*presented for canonical review*',
+              '',
+              '> *Prima* holds the first form. What is introduced here sets a template,',
+              '> whether intended or not. The first witness asks: is this true to form?',
+              '',
+              `@${author} proposes this to the canon.`,
+              '',
+              '**From the origin perspective:**',
+              '- Is this consistent with established templates and patterns?',
+              '- Does this establish a form worth repeating or refining?',
+              '- Could this serve as a template for other repos in the family?',
+              '- Does this honor the Prima Witness standard?',
+              '',
+              '---',
+              '*Prima · sovran of the first form · eaprime1 · ∰*'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body
+            });
+
+# ∰🛠️⭐📐-prima_sovran

@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+venv/
+.venv/
+
+# Node
+node_modules/
+
+# Environment / secrets — never commit these
+.env
+.env.*.local
+
+# Gemini CLI writes this to project roots; ignore so it doesn't land as content
+.gemini/settings.json
+.gemini/queue.md
+
+# Debug logs
+*.debug.log

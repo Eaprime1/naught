@@ -1,0 +1,13 @@
+exclude_paths:
+  - "intake/**"
+  - "turns/**"
+  - "unexusi/**"
+  - "seeds/**/*.md"
+  - "quests/**"
+  - ".agents/**"
+  - ".claude/**"
+  - ".codex/**"
+  - "**/*.pdf"
+  - "**/*.docx"
+  - "**/*.jpg"
+  - "**/*.png"
