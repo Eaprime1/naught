@@ -171,9 +171,9 @@
     },
     "extensions": {
       "type": "object",
-      "description": "Optional repo-specific additions that extend the minimum custody shape without changing it. Keys must be namespace-like identifiers and values use a consistent envelope.",
+      "description": "Optional repo-specific additions that extend the minimum custody shape without changing it. Keys use a dotted namespace and may optionally begin with an owner/repo prefix; values use a consistent envelope.",
       "propertyNames": {
-        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*(?:\\.[a-z0-9]+(?:-[a-z0-9]+)*)+$"
+        "pattern": "^(?:[a-z0-9]+(?:-[a-z0-9]+)*/[a-z0-9]+(?:-[a-z0-9]+)*|[a-z0-9]+(?:-[a-z0-9]+)*)(?:\\.[a-z0-9]+(?:-[a-z0-9]+)*)+$"
       },
       "additionalProperties": {
         "type": "object",
