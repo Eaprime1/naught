@@ -16,17 +16,17 @@ something to naught is navigational, not failure.
 ```text
 Unknowable
   → Maw
-  → Known_naught / empty_vector
+  → known_naught / empty_vector
   → Nullus
-  → Unknown / anti_vector
+  → unknown / anti_vector
   → [ naught operates here ]
-  → Naught_known / vector
+  → naught_known / vector
   → Known
-  → Unknown_zero
+  → unknown_zero
   → Zero space repo
 ```
 
-This repo is responsible for the **Unknown → Naught_known** transition and for
+This repo is responsible for the **`unknown` → `naught_known`** transition and for
 holding whatever other aspects of naught space are later assigned to it.
 
 ## Hard rules
@@ -71,7 +71,8 @@ Use and extend `schema/naught_intake.json`:
     "do_not_connect_yet": "",
     "wait_for": ""
   },
-  "closing_status": "HOLDING"
+  "closing_status": "HOLDING",
+  "extensions": {}
 }
 ```
 
