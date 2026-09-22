@@ -61,13 +61,10 @@
             "string",
             "null"
           ],
-          "description": "Canonical prior-state identifier from the custody chain. Use a canonical state name rather than an alias label, or null when no prior state is recorded.",
+          "description": "Canonical prior-state identifier for records in this repo's current local custody slice. Use `unknown` when the record is the result of the local transition, or null when no prior in-repo state is recorded.",
           "enum": [
             null,
-            "unknown",
-            "naught_known",
-            "known",
-            "unknown_zero"
+            "unknown"
           ]
         },
         "entered_at": {
