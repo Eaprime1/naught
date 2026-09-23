@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Eaprime1/naught/schema/naught_intake.json",
+  "title": "naught intake custody record",
+  "description": "Minimum custody shape for content held in naught space. Extends the Custos GERM_INTAKE carrier rather than replacing it: a record may be the bare form or a full carrier wrapping it in germ_intake_form. Extend this schema rather than replacing it.",
+  "$defs": {
+    "jsonValue": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "naughtForm": {
+      "type": "object",
+      "required": [
+        "identity",
+        "naught_state",
+        "custody",
+        "hold_note",
+        "closing_status"
+      ],
+      "properties": {
+        "identity": {
+          "type": "object",
+          "required": [
+            "name",
+            "one_line_signal",
+            "source",
+            "prima_clock"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "one_line_signal": {
+              "type": "string"
+            },
+            "source": {
+              "type": "string",
+              "description": "Origin reference. A URI-like handle (e.g. `nullus:item-123`) is preferred; free-text sources from existing Custos carriers are accepted as-is so they are not rewritten on intake."
+            },
+            "prima_clock": {
+              "type": "string",
+              "description": "Prima clock timestamp in YYYYMMDDHHMM numeric format.",
+              "pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])([01][0-9]|2[0-3])[0-5][0-9]$"
+            }
+          },
+          "additionalProperties": true
+        },
+        "naught_state": {
+          "type": "object",
+          "required": [
+            "current",
+            "prior",
+            "entered_at"
+          ],
+          "properties": {
+            "current": {
+              "type": "string",
+              "description": "Canonical naught-space state identifier for the current record.",
+              "enum": [
+                "unknown",
+                "naught_known"
+              ]
+            },
+            "prior": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Canonical prior-state identifier for records in this repo's current local custody slice. Use null for a fresh `unknown` record, `naught_known` for a returned item re-entering as `unknown`, or `unknown` for a record that has completed the local transition.",
+              "enum": [
+                null,
+                "unknown",
+                "naught_known"
+              ]
+            },
+            "entered_at": {
+              "type": "string",
+              "description": "Entry timestamp for the current naught-space state in YYYYMMDDHHMM numeric format.",
+              "pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])([01][0-9]|2[0-3])[0-5][0-9]$"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "current": {
+                    "const": "unknown"
+                  }
+                },
+                "required": [
+                  "current"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "prior": {
+                    "enum": [
+                      null,
+                      "naught_known"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "current": {
+                    "const": "naught_known"
+                  }
+                },
+                "required": [
+                  "current"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "prior": {
+                    "const": "unknown"
+                  }
+                }
+              }
+            }
+          ],
+          "additionalProperties": false
+        },
+        "custody": {
+          "type": "object",
+          "required": [
+            "suit",
+            "plank_status",
+            "transit_type",
+            "authorized_by"
+          ],
+          "properties": {
+            "suit": {
+              "type": "string"
+            },
+            "plank_status": {
+              "type": "string"
+            },
+            "transit_type": {
+              "type": "string",
+              "const": "gas_transfer"
+            },
+            "authorized_by": {
+              "type": "string",
+              "const": "Custos"
+            }
+          },
+          "additionalProperties": true
+        },
+        "hold_note": {
+          "type": "object",
+          "required": [
+            "do_not_develop",
+            "do_not_connect_yet",
+            "wait_for"
+          ],
+          "properties": {
+            "do_not_develop": {
+              "type": "string"
+            },
+            "do_not_connect_yet": {
+              "type": "string"
+            },
+            "wait_for": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "closing_status": {
+          "type": "string",
+          "const": "HOLDING"
+        },
+        "extensions": {
+          "type": "object",
+          "description": "Optional repo-specific additions that extend the minimum custody shape without changing it. Keys use a dotted namespace and may optionally begin with an owner/repo prefix; values use a consistent envelope.",
+          "propertyNames": {
+            "pattern": "^(?:[a-z0-9]+(?:-[a-z0-9]+)*/[a-z0-9]+(?:-[a-z0-9]+)*|[a-z0-9]+(?:-[a-z0-9]+)*)(?:\\.[a-z0-9]+(?:-[a-z0-9]+)*)+$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "description",
+              "data"
+            ],
+            "properties": {
+              "description": {
+                "type": "string"
+              },
+              "data": {
+                "description": "Extension payload. May be any JSON value.",
+                "$ref": "#/$defs/jsonValue"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "polar_state": {
+          "type": "object",
+          "description": "Carried unchanged from the Custos GERM_INTAKE carrier when present. naught does not set or evaluate polarity; it receives the result of the external polar flip / prime decision.",
+          "properties": {
+            "is_polar": {
+              "type": "boolean"
+            },
+            "pole": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true,
+      "description": "The germ_intake_form shape from Custos, extended with naught_state. naught's own fields (naught_state, custody.transit_type, closing_status) stay strict; fields naught does not define pass through unchanged."
+    },
+    "germIntakeCarrier": {
+      "type": "object",
+      "description": "A full Custos GERM_INTAKE carrier. The envelope and any sibling sections (claim tickets, narrative seeds, taxonomies) are kept as-is; only germ_intake_form is held to the naught minimum.",
+      "required": [
+        "carrier_type",
+        "germ_intake_form"
+      ],
+      "properties": {
+        "carrier_type": {
+          "const": "GERM_INTAKE"
+        },
+        "version": {
+          "type": "string"
+        },
+        "prima_clock": {
+          "type": "string",
+          "pattern": "^[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])([01][0-9]|2[0-3])[0-5][0-9]$"
+        },
+        "germ_intake_form": {
+          "$ref": "#/$defs/naughtForm"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/germIntakeCarrier"
+    },
+    {
+      "$ref": "#/$defs/naughtForm"
+    }
+  ]
+}
