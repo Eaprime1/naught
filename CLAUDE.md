@@ -2,7 +2,7 @@
 
 **Status: scaffold-only. This repo's final shape is not yet decided by the project owner — build the minimum, do not over-architect.**
 
-This file is read by Claude Code when working in this repository (via `CLAUDE_CODE_OAUTH_TOKEN` in GitHub Actions, or locally). If a task requires architecture this file doesn't cover, stop and flag it in the PR rather than inventing it.
+This file is read by Claude Code when working in this repository (in GitHub Actions through `anthropics/claude-code-action`, authenticated with the `CLAUDE_CODE_OAUTH_TOKEN` secret wired in `.github/workflows/claude-code-review.yml`, or locally). If a task requires architecture this file doesn't cover, stop and flag it in the PR rather than inventing it.
 
 > The prima template's original CLAUDE.md is held, not replaced, at
 > [`docs/origin/prima-template-CLAUDE.md`](docs/origin/prima-template-CLAUDE.md).
@@ -14,6 +14,11 @@ naught is one stage in the Custos custody pipeline for THE/UNEXUS. It sits betwe
 Naught space is not Polaris. Polaris is the fixed, invariant reference — it never resets. Naught/Zero is a *local state*: reduced pressure, unassigned, reset, or available potential. Returning something to naught is a navigational operation, not a failure or regression. Don't conflate the two in code, comments, or naming.
 
 ## Position in the custody chain
+
+> **Provisional.** Maw's position relative to Nullus is an open owner question
+> (see "Explicitly do not resolve" below): `nullus/docs/architecture.md` places
+> MAW downstream of NULLUS. Don't build on the Maw → Nullus ordering until it
+> is settled.
 
 ```
 Unknowable (external, not yet in custody)
@@ -46,30 +51,36 @@ Extend the existing Custos germ-intake custody schema — don't replace it.
 ```json
 {
   "identity": {
-    "name": "",
-    "one_line_signal": "",
-    "source": "",
-    "prima_clock": "YYYYMMDDHHMM"
+    "name": "example-held-item",
+    "one_line_signal": "Arrived from Nullus; held until the prime decision.",
+    "source": "nullus:item-001",
+    "prima_clock": "202609221628"
   },
   "naught_state": {
-    "current": "unknown | naught_known",
-    "prior": "",
-    "entered_at": "YYYYMMDDHHMM"
+    "current": "unknown",
+    "prior": null,
+    "entered_at": "202609221628"
   },
   "custody": {
-    "suit": "",
-    "plank_status": "",
+    "suit": "♣️",
+    "plank_status": "1/3",
     "transit_type": "gas_transfer",
     "authorized_by": "Custos"
   },
   "hold_note": {
-    "do_not_develop": "",
-    "do_not_connect_yet": "",
-    "wait_for": ""
+    "do_not_develop": "Hold as received.",
+    "do_not_connect_yet": "No sibling links until the polar flip result arrives.",
+    "wait_for": "external prime decision"
   },
   "closing_status": "HOLDING"
 }
 ```
+
+This is one concrete valid record: a fresh arrival (`current: "unknown"`,
+`prior: null`). The allowed lineages are `unknown` ← `null` (fresh),
+`unknown` ← `naught_known` (returned item), and `naught_known` ← `unknown`.
+`schema/naught_intake.json` is the contract; a record may also arrive as a full
+Custos `GERM_INTAKE` carrier wrapping this form in `germ_intake_form`.
 
 ## Suggested structure
 
